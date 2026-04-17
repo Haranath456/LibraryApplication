@@ -1,0 +1,32 @@
+<div class="prompt-list-container">
+  <h2>Available Prompts</h2>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading">
+    <p>Loading prompts...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="error-message">
+    <p>{{ error }}</p>
+    <button (click)="loadPrompts()">Retry</button>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && prompts.length === 0 && !error" class="empty-state">
+    <p>No prompts available yet.</p>
+    <a routerLink="/add-prompt" class="btn btn-primary">Create First Prompt</a>
+  </div>
+
+  <!-- Prompts Grid -->
+  <div *ngIf="!loading && prompts.length > 0" class="prompts-grid">
+    <div *ngFor="let prompt of prompts" class="prompt-card" (click)="viewPrompt(prompt.id)">
+      <h3>{{ prompt.title }}</h3>
+      <p class="complexity" [ngClass]="getComplexityColor(prompt.complexity)">
+        Complexity: <span class="value">{{ prompt.complexity }}/10</span>
+      </p>
+      <p class="date">{{ prompt.created_at | date: 'short' }}</p>
+      <button class="btn btn-secondary">View Details</button>
+    </div>
+  </div>
+</div>

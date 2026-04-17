@@ -1,0 +1,97 @@
+<div class="form-container">
+  <h2>Create New Prompt</h2>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="promptForm" (ngSubmit)="onSubmit()">
+    <!-- Title Field -->
+    <div class="form-group">
+      <label for="title">Prompt Title *</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        placeholder="Enter a descriptive title"
+        class="form-control"
+        [class.is-invalid]="isInvalid('title')"
+      />
+      <div class="char-count">
+        {{ getTitleLength() }}/255 characters
+      </div>
+      <div *ngIf="isInvalid('title')" class="error-text">
+        {{ getErrorMessage('title') }}
+      </div>
+    </div>
+
+    <!-- Complexity Field -->
+    <div class="form-group">
+      <label for="complexity">Complexity Level (1-10) *</label>
+      <div class="complexity-input">
+        <input
+          type="range"
+          id="complexity"
+          formControlName="complexity"
+          min="1"
+          max="10"
+          class="slider"
+        />
+        <span class="complexity-value" [ngClass]="getComplexityColor(f['complexity'].value)">
+          {{ f['complexity'].value }}/10
+        </span>
+      </div>
+      <div *ngIf="isInvalid('complexity')" class="error-text">
+        {{ getErrorMessage('complexity') }}
+      </div>
+    </div>
+
+    <!-- Content Field -->
+    <div class="form-group">
+      <label for="content">Prompt Content *</label>
+      <textarea
+        id="content"
+        formControlName="content"
+        placeholder="Enter the full prompt content (minimum 20 characters)"
+        rows="8"
+        class="form-control"
+        [class.is-invalid]="isInvalid('content')"
+      ></textarea>
+      <div class="char-count">
+        {{ getContentLength() }} characters (minimum 20 required)
+      </div>
+      <div *ngIf="isInvalid('content')" class="error-text">
+        {{ getErrorMessage('content') }}
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Creating...' : 'Create Prompt' }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="resetForm()"
+        [disabled]="loading"
+      >
+        Clear Form
+      </button>
+    </div>
+  </form>
+
+  <div class="back-link">
+    <a routerLink="/prompts">← Back to Prompts</a>
+  </div>
+</div>

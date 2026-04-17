@@ -1,0 +1,49 @@
+<div class="prompt-detail-container" *ngIf="!loading">
+  <!-- Back Button -->
+  <button class="btn btn-link" (click)="goBack()">← Back to Prompts</button>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+    <button (click)="loadPromptDetail()">Retry</button>
+  </div>
+
+  <!-- Prompt Content -->
+  <div *ngIf="prompt && !error" class="prompt-details">
+    <h1>{{ prompt.title }}</h1>
+
+    <div class="metadata">
+      <div class="meta-item">
+        <label>Complexity</label>
+        <span class="complexity-badge" [ngClass]="getComplexityColor(prompt.complexity)">
+          {{ prompt.complexity }}/10
+        </span>
+      </div>
+      <div class="meta-item">
+        <label>Created</label>
+        <span>{{ prompt.created_at | date: 'medium' }}</span>
+      </div>
+      <div class="meta-item">
+        <label>Views</label>
+        <span class="view-count">{{ prompt.view_count || 0 }}</span>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Prompt Content</h2>
+      <div class="content-box">
+        <p>{{ prompt.content }}</p>
+      </div>
+      <button class="btn btn-primary" (click)="copyToClipboard()">📋 Copy to Clipboard</button>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" routerLink="/add-prompt">+ Create New Prompt</button>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading">
+  <p>Loading prompt details...</p>
+</div>

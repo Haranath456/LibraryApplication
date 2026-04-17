@@ -1,0 +1,121 @@
+.prompt-list-container {
+  width: 100%;
+}
+
+.prompt-list-container h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.loading,
+.empty-state,
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: #666;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fdecea;
+  border: 1px solid #e74c3c;
+}
+
+.error-message button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empty-state a {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.prompts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.prompt-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.prompt-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.prompt-card h3 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  word-break: break-word;
+}
+
+.prompt-card .complexity {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.complexity.easy .value {
+  color: #27ae60;
+}
+
+.complexity.medium .value {
+  color: #f39c12;
+}
+
+.complexity.hard .value {
+  color: #e74c3c;
+}
+
+.prompt-card .date {
+  color: #95a5a6;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-secondary {
+  background-color: #34495e;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #2c3e50;
+}
