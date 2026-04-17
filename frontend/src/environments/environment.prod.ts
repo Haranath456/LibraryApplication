@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://backend:8000'
+  apiUrl: 'https://libraryapplication-d61w.onrender.com'
 };
